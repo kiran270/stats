@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Player Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+    .card-content {
+      overflow-x: auto;
+    }
+    .table {
+      margin-bottom: 0;
+    }
+    .table th {
+      background-color: #f8f8f8;
+    }
+    .win { color: green; }
+    .loss { color: red; }
+    .draw { color: orange; }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Last 10 Matches Statistics</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row" id="stats-container">
+          {% for x in stats %}
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-title">{{ x[0] }}</div>
+              <div class="card-content">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      {% for y in range(1, 11) %}
+                        <th>M{{ y }}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {% for y in range(1, 11) %}
+                        <td class="result">{{ x[y] }}</td>
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Color-code the results
+      $('.result').each(function() {
+        var result = $(this).text().trim().toLowerCase();
+        if (result === 'w') {
+          $(this).addClass('win');
+        } else if (result === 'l') {
+          $(this).addClass('loss');
+        } else if (result === 'd') {
+          $(this).addClass('draw');
+        }
+      });
+
+      // Add hover effect to cards
+      $('.card').hover(
+        function() {
+          $(this).css('transform', 'scale(1.03)');
+        },
+        function() {
+          $(this).css('transform', 'scale(1)');
+        }
+      );
+
+      // Add sorting functionality
+      $('#stats-container').prepend('<div class="col-md-12"><button id="sort-btn" class="btn btn-primary mb-3">Sort by Wins</button></div>');
+      
+      $('#sort-btn').click(function() {
+        var cards = $('.card').parent().detach().get();
+        cards.sort(function(a, b) {
+          var winsA = $(a).find('.win').length;
+          var winsB = $(b).find('.win').length;
+          return winsB - winsA;
+        });
+        $('#stats-container').append(cards);
+      });
+
+      // Add a simple chart
+      $('.card-content').each(function() {
+        var wins = $(this).find('.win').length;
+        var losses = $(this).find('.loss').length;
+        var draws = $(this).find('.draw').length;
+        
+        $(this).append('<div class="chart"><div class="wins"></div><div class="losses"></div><div class="draws"></div></div>');
+        $(this).find('.wins').css('width', (wins * 10) + '%');
+        $(this).find('.losses').css('width', (losses * 10) + '%');
+        $(this).find('.draws').css('width', (draws * 10) + '%');
+      });
+    });
+  </script>
+
+  <style>
+    .chart {
+      height: 20px;
+      margin-top: 10px;
+      display: flex;
+    }
+    .wins,
