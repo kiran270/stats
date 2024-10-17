@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Matches Statistics</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,11 +13,44 @@
   <script>
     $(document).ready(function () {
       $('#statsTable').DataTable({
-        "pageLength": 11
+        "pageLength": 50
       });
     });
   </script>
   <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .panel {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .panel-heading {
+      background-color: #428bca !important;
+      color: #fff !important;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .panel-body {
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .table-container {
+      max-height: 550px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -26,20 +59,56 @@
     th,
     td {
       border: 1px solid #ddd;
-      padding: 8px;
+      padding: 12px;
       text-align: center;
+      vertical-align: middle;
     }
 
     th {
-      background-color: #f2f2f2;
+      background-color: #5bc0de;
+      color: white;
+      font-weight: bold;
     }
 
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #f9f9f9;
     }
 
     tr:hover {
-      background-color: #ddd;
+      background-color: #d6e9c6;
+    }
+
+    a {
+      color: #428bca;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #23527c;
+      text-decoration: underline;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      background-color: #428bca;
+      color: white !important;
+      border-radius: 5px;
+      margin: 0 5px;
+      padding: 6px 12px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background-color: #23527c;
+    }
+    .box {
+            border: 1px solid #007bff; /* Border color */
+            background-color: #e7f0ff; /* Background color */
+            width: 80px; /* Width of the boxes */
+            height: 50px; /* Height of the boxes */
+            margin: 5px; /* Margin around the boxes */
+            display: inline-block; /* Make the boxes inline */
+            text-align: center; /* Center align text */
+            line-height: 50px; /* Center text vertically */
+            border-radius: 5px; /* Rounded corners */
     }
   </style>
 </head>
@@ -48,41 +117,52 @@
   <div class="container-fluid">
     <div class="panel panel-default">
       <div class="panel-heading">
-          Matches Statstics
+        Matches Statistics
       </div>
       <div class="panel-body">
-        <table id="statsTable" class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>T20_Batting_First</th>
-              <th>T20_Bowling_First</th>
-              <th>T20_Batting_Second</th>
-              <th>T20_Bowling_Second</th>
-              <th>ODI_Batting_First</th>
-              <th>ODI_Bowling_First</th>
-              <th>ODI_Batting_Second</th>
-              <th>ODI_Bowling_Second</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for x in stats %}
-            <tr>
-              <td>{{ x.player_name }}</td>
-              <td><a href="{{ x.T20_Batting_First }}" target="_blank">T20_Batting_First</a></td>
-              <td><a href="{{ x.T20_Bowling_First }}" target="_blank">T20_Bowling_First</a></td>
-              <td><a href="{{ x.T20_Batting_Second }}" target="_blank">T20_Batting_Second</a></td>
-              <td><a href="{{ x.T20_Bowling_Second }}" target="_blank">T20_Bowling_Second</a></td>
-              <td><a href="{{ x.ODI_Batting_First }}" target="_blank">ODI_Batting_First</a></td>
-              <td><a href="{{ x.ODI_Bowling_First }}" target="_blank">ODI_Bowling_First</a></td>
-              <td><a href="{{ x.ODI_Batting_Second }}" target="_blank">ODI_Batting_Second</a></td>
-              <td><a href="{{ x.ODI_Bowling_Second }}" target="_blank">ODI_Bowling_Second</a></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table id="statsTable" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Batting First</th>
+                <th>Bowling First</th>
+                <th>Batting Second</th>
+                <th>Bowling Second</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for x in stats %}
+              <tr>
+                <td>{{ x.player_name }}</td>
+                <td>
+                  {% for run in x.Batting_First %}
+                    <div class="box">{{ run }}</div>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for run in x.Bowling_First %}
+                    <div class="box">{{ run }}</div>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for run in x.Batting_Second %}
+                    <div class="box">{{ run }}</div>
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for run in x.Bowling_Second %}
+                    <div class="box">{{ run }}</div>
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </body>
+
 </html>

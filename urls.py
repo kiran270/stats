@@ -17,6 +17,13 @@ def home():
 @app.route("/getstats",methods = ["POST","GET"])
 def stats():
 	squad_url=request.form.get("url")
+	ftype=request.form.get("type")
+	if ftype=="WT20":
+		ftype="23"
+	elif ftype=="MT20":
+		ftype="6"
+	elif ftype=="MTEST":
+		ftype="1"
 	print(squad_url)
 	response = requests.get(squad_url)
 	soup = BeautifulSoup(response.text, 'html.parser')
@@ -36,25 +43,61 @@ def stats():
 	    print(i)
 	    tempdata={}
 	    tempsplit=i["name"].split("-")
-	    T20_Batting_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class=6;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
-	    T20_Bowling_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class=6;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
-	    T20_Batting_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class=6;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
-	    T20_Bowling_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class=6;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
-	    ODI_Batting_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class=2;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
-	    ODI_Bowling_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class=2;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
-	    ODI_Batting_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class=2;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
-	    ODI_Bowling_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class=2;filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
+	    Batting_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
+	    Bowling_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
+	    Batting_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
+	    Bowling_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
+	    batting_first_data=parsebatting(Batting_First)
+	    batting_second_data=parsebatting(Batting_Second)
+	    bowling_first_data=parsebowling(Bowling_First)
+	    bowling_second_data=parsebowling(Bowling_Second)
 	    tempdata["player_name"]=i["name"]
-	    tempdata["T20_Batting_First"]=T20_Batting_First
-	    tempdata["T20_Bowling_First"]=T20_Bowling_First
-	    tempdata["T20_Batting_Second"]=T20_Batting_Second
-	    tempdata["T20_Bowling_Second"]=T20_Bowling_Second
-	    tempdata["ODI_Batting_First"]=ODI_Batting_First
-	    tempdata["ODI_Bowling_First"]=ODI_Bowling_First
-	    tempdata["ODI_Batting_Second"]=ODI_Batting_Second
-	    tempdata["ODI_Bowling_Second"]=ODI_Bowling_Second
+	    tempdata["Batting_First"]=batting_first_data
+	    tempdata["Bowling_First"]=bowling_first_data
+	    tempdata["Batting_Second"]=batting_second_data
+	    tempdata["Bowling_Second"]=bowling_second_data
 	    stats.append(tempdata)
-	return render_template("urls.html",stats=stats)
+	return render_template("urls3.html",stats=stats)
+def parsebatting(url):
+	headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Referer': 'https://example.com',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+	}
+	data=[]
+	response = requests.get(url,headers=headers)
+	soup = BeautifulSoup(response.text, 'html.parser')
+	# print(soup)
+	runs= soup.find_all('td', class_='padAst')
+	for i in range(2,len(runs)-1):
+		data.append(runs[i].text)
+	return data
+def parsebowling(url):
+	print(url)
+	headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Referer': 'https://example.com',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+	}
+	data=[]
+	response = requests.get(url,headers=headers)
+	soup = BeautifulSoup(response.text, 'html.parser')
+	# print(soup)
+	headlinks=soup.find_all('tr',class_='headlinks')
+	headlinkstemp=headlinks[0].find_all('th')
+	count=0
+	for i in range(0,len(headlinkstemp)):
+		if headlinkstemp[i].text=='Wkts':
+			count=i
+			break
+	wickets= soup.find_all('tr', class_='data1')
+	for i in range(2,len(wickets)-1):
+		temp=wickets[i].find_all('td')
+		data.append(temp[count].text)
+	return data
+
 
 if __name__ == "__main__":
     app.run(debug=True)
