@@ -15,79 +15,96 @@
       $('#statsTable').DataTable({
         "pageLength": 50
       });
+
+      // Flip card function
+      $('.flip-btn').click(function () {
+        var card = $(this).closest('.flip-card-inner');
+        card.toggleClass('flipped');
+      });
     });
   </script>
   <style type="text/css">
-   .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
-}
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
 
-.flip-card {
-  background-color: transparent;
-  width: 350px;
-  height: 500px;
-  perspective: 1000px;
-  margin: 10px;
-}
+    .flip-card {
+      background-color: transparent;
+      width: 350px;
+      height: 500px;
+      perspective: 1000px;
+      margin: 10px;
+    }
 
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
+    .flip-card-inner.flipped {
+      transform: rotateY(180deg);
+    }
 
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-.flip-card-front {
-  background-color: #f1f1f1;
-  color: black;
-}
+    .flip-card-front {
+      background-color: #f1f1f1;
+      color: black;
+    }
 
-.flip-card-back {
-  background-color: #f1f1f1;
-  color: black;
-  transform: rotateY(180deg);
-}
+    .flip-card-back {
+      background-color: #f1f1f1;
+      color: black;
+      transform: rotateY(180deg);
+    }
 
-h2 {
-  margin-bottom: 10px;
-}
+    h2 {
+      margin-bottom: 10px;
+    }
 
-table {
-  width: 100%;
-  text-align: center;
-}
+    table {
+      width: 100%;
+      text-align: center;
+    }
 
-thead {
-  background-color: #333;
-  color: white;
-}
+    thead {
+      background-color: #333;
+      color: white;
+    }
 
-tbody tr:nth-child(odd) {
-  background-color: #f2f2f2;
-}
+    tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
 
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .player-header .btn {
+      flex-shrink: 0;
+    }
 
   </style>
 </head>
@@ -99,7 +116,10 @@ tbody tr:nth-child(odd) {
       <div class="flip-card-inner">
         <!-- Front Side -->
         <div class="flip-card-front">
-          <button class="btn btn-success">{{ x.player_name }}</button>
+          <div class="player-header">
+            <button class="btn btn-success">{{ x.player_name }}</button>
+            <button class="btn btn-primary flip-btn">Flip to Back</button>
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -117,9 +137,13 @@ tbody tr:nth-child(odd) {
             </tbody>
           </table>
         </div>
+
         <!-- Back Side -->
         <div class="flip-card-back">
-          <button class="btn btn-success">{{ x.player_name }}</button>
+          <div class="player-header">
+            <button class="btn btn-success">{{ x.player_name }}</button>
+            <button class="btn btn-primary flip-btn">Flip to Front</button>
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>
