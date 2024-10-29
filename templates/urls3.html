@@ -16,27 +16,36 @@
         "pageLength": 50
       });
 
+      $('#groundReportsTable').DataTable({
+        "pageLength": 10
+      });
+
       // Flip card function
       $('.flip-btn').click(function () {
         var card = $(this).closest('.flip-card-inner');
         card.toggleClass('flipped');
       });
+
+      // Ensure DataTables adjust properly on tab switch
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+      });
     });
   </script>
   <style type="text/css">
     .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
       padding: 20px;
     }
 
     .flip-card {
       background-color: transparent;
-      width: 350px;
+      width: 100%;
       height: 500px;
       perspective: 1000px;
-      margin: 10px;
+      margin: auto;
     }
 
     .flip-card-inner {
@@ -77,93 +86,110 @@
       transform: rotateY(180deg);
     }
 
-    h2 {
-      margin-bottom: 10px;
+    .tab-content {
+      margin-top: 20px;
     }
-
-    table {
-      width: 100%;
-      text-align: center;
-    }
-
-    thead {
-      background-color: #333;
-      color: white;
-    }
-
-    tbody tr:nth-child(odd) {
-      background-color: #f2f2f2;
-    }
-
-    .player-header {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .player-header .btn {
-      flex-shrink: 0;
-    }
-
   </style>
 </head>
 
 <body>
-  <div class="card-container">
-    {% for x in stats %}
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <!-- Front Side -->
-        <div class="flip-card-front">
-          <div class="player-header">
-            <button class="btn btn-success">{{ x.player_name }}</button>
-            <button class="btn btn-primary flip-btn">Flip to Back</button>
-          </div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Batting First</th>
-                <th>Bowling Second</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for i in range(10) %}
-              <tr>
-                <td>{{ x.Batting_First[i] if x.Batting_First | length > i else 'N/A' }}</td>
-                <td>{{ x.Bowling_Second[i] if x.Bowling_Second | length > i else 'N/A' }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
 
-        <!-- Back Side -->
-        <div class="flip-card-back">
-          <div class="player-header">
-            <button class="btn btn-success">{{ x.player_name }}</button>
-            <button class="btn btn-primary flip-btn">Flip to Front</button>
+  <!-- Navbar with Tabs -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Matches Statistics</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a data-toggle="tab" href="#player-stats-tab">Player Stats</a></li>
+        <li><a data-toggle="tab" href="#ground-reports-tab">Ground Reports</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Tab Content -->
+  <div class="container">
+    <div class="tab-content">
+
+      <!-- Player Stats Tab -->
+      <div id="player-stats-tab" class="tab-pane fade in active">
+        <div class="card-container">
+          {% for x in stats %}
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">{{ x.player_name }}</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in range(10) %}
+                    <tr>
+                      <td>{{ x.Batting_First[i] if x.Batting_First | length > i else 'N/A' }}</td>
+                      <td>{{ x.Bowling_Second[i] if x.Bowling_Second | length > i else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">{{ x.player_name }}</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in range(10) %}
+                    <tr>
+                      <td>{{ x.Batting_Second[i] if x.Batting_Second | length > i else 'N/A' }}</td>
+                      <td>{{ x.Bowling_First[i] if x.Bowling_First | length > i else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Batting Second</th>
-                <th>Bowling First</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for i in range(10) %}
-              <tr>
-                <td>{{ x.Batting_Second[i] if x.Batting_Second | length > i else 'N/A' }}</td>
-                <td>{{ x.Bowling_First[i] if x.Bowling_First | length > i else 'N/A' }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          {% endfor %}
         </div>
       </div>
+
+      <!-- Ground Reports Tab -->
+      <div id="ground-reports-tab" class="tab-pane fade">
+        <h2>Ground Reports</h2>
+        <table id="groundReportsTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for report in reports %}
+            <tr>
+              <td>{{ report }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
     </div>
-    {% endfor %}
   </div>
 
 </body>

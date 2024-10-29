@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Matches Statistics - Heatmap View</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@1.2.0/dist/chartjs-chart-matrix.min.js"></script>
+
+  <style>
+    .heatmap-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .heatmap-chart {
+      width: 600px;
+      height: 400px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const stats = {{ stats | tojson }}; // Make sure stats is passed as JSON from the backend
+
+      function createHeatmap(elementId) {
+        const ctx = document.getElementById(elementId).getContext('2d');
+
+        // Batting First heatmap dataset
+        const battingFirstData = {
+          label: 'Batting First',
+          data: stats.flatMap((player, playerIndex) =>
+            player.Batting_First.map((score, matchIndex) => ({
+              x: matchIndex,
+              y: playerIndex,
+              v: score || 0 // Use 0 if score is undefined
+            }))
+          ),
+          backgroundColor: (ctx) => `rgba(0, 255, 0, ${ctx.raw.v / 200})`, // Adjust green intensity based on score
+          borderWidth: 1,
+          width: ({ chart }) => chart.scales.x.width / 10,
+          height: ({ chart }) => chart.scales.y.height / stats.length
+        };
+
+        new Chart(ctx, {
+          type: 'matrix',
+          data: {
+            datasets: [battingFirstData]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              title: { display: true, text: 'Batting First Performance' }
+            },
+            scales: {
+              x: { 
+                type: 'category', 
+                labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4', 'Match 5', 'Match 6', 'Match 7', 'Match 8', 'Match 9', 'Match 10'],
+                title: { display: true, text: 'Matches' }
+              },
+              y: { 
+                type: 'category', 
+                labels: stats.map(player => player.player_name),
+                title: { display: true, text: 'Players' }
+              }
+            }
+          }
+        });
+      }
+      createHeatmap("battingHeatmap");
+    });
+  </script>
+</head>
+
+<body>
+  <div class="heatmap-container">
+    <canvas id="battingHeatmap" class="heatmap-chart"></canvas>
+  </div>
+</body>
+
+</html>

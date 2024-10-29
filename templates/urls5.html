@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Player Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+
+  <style>
+    .chart-container {
+      width: 100%;
+      margin: 20px auto;
+      height: 1000px; /* Increased height */
+    }
+
+    .dropdown {
+      width: 50%;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .dropdown select {
+      width: 50%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .panel {
+      margin: 20px 0;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: 1000px; /* Fixed height for chart canvas */
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <script>
+    var playerStats = {{ stats | tojson }}; // Fetching all player stats as a JSON object
+    var battingChart, bowlingChart;
+
+    $(document).ready(function () {
+      // Create initial charts (for the first player in the list)
+      createCharts(playerStats[0]);
+
+      // Event listener for dropdown change
+      $('#playerDropdown').change(function () {
+        var selectedPlayer = $(this).val();
+        var playerData = playerStats.find(player => player.player_name === selectedPlayer);
+        updateCharts(playerData);
+      });
+    });
+
+    // Function to create the charts initially
+    function createCharts(playerData) {
+      var ctxBatting = document.getElementById('battingChart').getContext('2d');
+      var ctxBowling = document.getElementById('bowlingChart').getContext('2d');
+
+      // Batting chart with two datasets
+      battingChart = new Chart(ctxBatting, {
+        type: 'bar',
+        data: {
+          labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4', 'Match 5', 'Match 6', 'Match 7', 'Match 8', 'Match 9', 'Match 10'],
+          datasets: [{
+              label: 'Batting First - Runs',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              data: playerData.Batting_First
+            },
+            {
+              label: 'Batting Second - Runs',
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1,
+              data: playerData.Batting_Second
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: 'Batting Performance'
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100, // Set maximum value for runs
+              ticks: {
+                stepSize: 20 // Gap of 20 runs between ticks
+              }
+            }
+          }
+        }
+      });
+
+      // Bowling chart with two datasets
+      bowlingChart = new Chart(ctxBowling, {
+        type: 'bar',
+        data: {
+          labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4', 'Match 5', 'Match 6', 'Match 7', 'Match 8', 'Match 9', 'Match 10'],
+          datasets: [{
+              label: 'Bowling First - Wickets',
+              backgroundColor: 'rgba(153, 102, 255, 0.2)',
+              borderColor: 'rgba(153, 102, 255, 1)',
+              borderWidth: 1,
+              data: playerData.Bowling_First
+            },
+            {
+              label: 'Bowling Second - Wickets',
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1,
+              data: playerData.Bowling_Second
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: 'Bowling Performance'
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 7, // Set maximum value for wickets
+              ticks: {
+                stepSize: 1 // Gap of 1 wicket between ticks
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Function to update the charts based on the selected player
+    function updateCharts(playerData) {
+      // Update Batting Chart
+      battingChart.data.datasets[0].data = playerData.Batting_First;
+      battingChart.data.datasets[1].data = playerData.Batting_Second;
+      battingChart.update();
+
+      // Update Bowling Chart
+      bowlingChart.data.datasets[0].data = playerData.Bowling_First;
+      bowlingChart.data.datasets[1].data = playerData.Bowling_Second;
+      bowlingChart.update();
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- Dropdown for Player Selection -->
+  <div class="dropdown">
+    <select id="playerDropdown" class="form-control">
+      {% for x in stats %}
+      <option value="{{ x.player_name }}">{{ x.player_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Batting and Bowling Chart Panels -->
+  <div class="chart-container">
+    <div class="panel panel-default col-md-6">
+      <div class="panel-heading"><strong>Batting Chart</strong></div>
+      <div class="panel-body">
+        <canvas id="battingChart"></canvas>
+      </div>
+    </div>
+
+    <div class="panel panel-default col-md-6">
+      <div class="panel-heading"><strong>Bowling Chart</strong></div>
+      <div class="panel-body">
+        <canvas id="bowlingChart"></canvas>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

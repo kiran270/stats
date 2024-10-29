@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Match Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.stats-table').DataTable({
+        "pageLength": 10 // Display 10 matches at a time
+      });
+    });
+  </script>
+  <style>
+    th, td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .sub-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sub-column span {
+      margin: 2px;
+    }
+
+    h2 {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    
+    <!-- Table 1: Batting First and Bowling Second -->
+    <h2 class="text-center">Batting First and Bowling Second</h2>
+    <table class="table table-bordered table-striped stats-table">
+      <thead>
+        <tr>
+          <th>Match No.</th>
+          {% for player in stats %}
+          <th colspan="2">{{ player.player_name }}</th>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th></th>
+          {% for player in stats %}
+          <th>Runs</th>
+          <th>Wickets</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(10) %}
+        <tr>
+          <td>{{ i+1 }}</td>
+          {% for player in stats %}
+          <td>{{ player.Batting_First[i] if player.Batting_First | length > i else 'N/A' }}</td>
+          <td>{{ player.Bowling_Second[i] if player.Bowling_Second | length > i else 'N/A' }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Table 2: Batting Second and Bowling First -->
+    <h2 class="text-center">Batting Second and Bowling First</h2>
+    <table class="table table-bordered table-striped stats-table">
+      <thead>
+        <tr>
+          <th>Match No.</th>
+          {% for player in stats %}
+          <th colspan="2">{{ player.player_name }}</th>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th></th>
+          {% for player in stats %}
+          <th>Runs</th>
+          <th>Wickets</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(10) %}
+        <tr>
+          <td>{{ i+1 }}</td>
+          {% for player in stats %}
+          <td>{{ player.Batting_Second[i] if player.Batting_Second | length > i else 'N/A' }}</td>
+          <td>{{ player.Bowling_First[i] if player.Bowling_First | length > i else 'N/A' }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </div>
+</body>
+
+</html>

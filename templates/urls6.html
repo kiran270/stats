@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Player Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+
+  <style>
+    .chart-container {
+      width: 100%;
+      margin: 20px auto;
+      height: 500px; /* Adjusted height */
+    }
+
+    canvas {
+      max-width: 100%;
+      height: 400px; /* Set height for chart canvas */
+    }
+  </style>
+
+  <script>
+    var playerStats = {{ stats | tojson }}; // Fetching all player stats as a JSON object
+    var battingChart, bowlingChart;
+
+    $(document).ready(function () {
+      // Create charts for all players
+      createLineCharts();
+    });
+
+    // Function to create line charts for batting and bowling performance
+    function createLineCharts() {
+  var ctxBatting = document.getElementById('battingChart').getContext('2d');
+  var ctxBowling = document.getElementById('bowlingChart').getContext('2d');
+
+  // Batting chart data using a loop
+  var battingDatasets = [];
+  for (var i = 0; i < playerStats.length; i++) {
+    var player = playerStats[i];
+    var battingData = (player.team === 'A') ? player.Batting_First : player.Batting_Second;
+
+    if (battingData) {
+      battingDatasets.push({
+        label: player.player_name + " - Batting",
+        data: battingData,
+        fill: false,
+        borderColor: getRandomColor(),
+        tension: 0.1
+      });
+    }
+  }
+
+  battingChart = new Chart(ctxBatting, {
+    type: 'line',
+    data: {
+      labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4', 'Match 5', 'Match 6', 'Match 7', 'Match 8', 'Match 9', 'Match 10'],
+      datasets: battingDatasets
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Batting Performance of All Players'
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 200,
+          ticks: { stepSize: 20 }
+        }
+      }
+    }
+  });
+
+  // Bowling chart data using a loop
+  var bowlingDatasets = [];
+  for (var i = 0; i < playerStats.length; i++) {
+    var player = playerStats[i];
+    var bowlingData = (player.team === 'B') ? player.Bowling_First : player.Bowling_Second;
+
+    if (bowlingData) {
+      bowlingDatasets.push({
+        label: player.player_name + " - Bowling",
+        data: bowlingData,
+        fill: false,
+        borderColor: getRandomColor(),
+        tension: 0.1
+      });
+    }
+  }
+
+  bowlingChart = new Chart(ctxBowling, {
+    type: 'line',
+    data: {
+      labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4', 'Match 5', 'Match 6', 'Match 7', 'Match 8', 'Match 9', 'Match 10'],
+      datasets: bowlingDatasets
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Bowling Performance of All Players'
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 7,
+          ticks: { stepSize: 1 }
+        }
+      }
+    }
+  });
+}
+
+
+
+    // Helper function to generate a random color for each player
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- Batting and Bowling Chart Panels -->
+  <div class="chart-container">
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Batting Chart - All Players</strong></div>
+      <div class="panel-body">
+        <canvas id="battingChart"></canvas>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Bowling Chart - All Players</strong></div>
+      <div class="panel-body">
+        <canvas id="bowlingChart"></canvas>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,5 +1,13 @@
 import requests
-
+from flask import Flask, render_template
+from flask import * 
+import operator
+import requests
+from bs4 import BeautifulSoup
+from tabulate import tabulate
+from prettytable import PrettyTable
+import re
+import os
 # Set headers to mimic a browser
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -9,11 +17,14 @@ headers = {
 }
 
 # Send request with headers
-url = "https://www.screener.in/screen/raw/?sort=&order=&source_id=440753&query=Volume+1week+average+%3E+Volume+1year+average+*+5+AND%0D%0AReturn+over+1week+%3E+0+AND%0D%0AMarket+Capitalization+%3E+500"
+url = "https://www.sofascore.com/football/match/fenerbahce-manchester-united/Ksclb#id:12764133,tab:lineups"
 response = requests.get(url, headers=headers)
+soup = BeautifulSoup(response.text, 'html.parser')
+players_table_rows=soup.find_all('a')
+for i in players_table_rows:
+	print(i)
+	if i.has_attr('data-testid'):
+		print(i)
 
-if response.status_code == 200:
-    print("Success! You're able to scrape the page.")
-    print(response.text)
-else:
-    print(f"Failed with status code {response.status_code}")
+# Find all player divs by class instead of 'data-testid'
+print(len(players_table_rows))
