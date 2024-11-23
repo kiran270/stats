@@ -1,0 +1,4372 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Matches Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#statsTable').DataTable({
+        "pageLength": 50
+      });
+
+      $('#groundReportsTable').DataTable({
+        "pageLength": 10
+      });
+
+      // Flip card function
+      $('.flip-btn').click(function () {
+        var card = $(this).closest('.flip-card-inner');
+        card.toggleClass('flipped');
+      });
+
+      // Ensure DataTables adjust properly on tab switch
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+      });
+    });
+  </script>
+  <style type="text/css">
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 500px;
+      perspective: 1000px;
+      margin: auto;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .flip-card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .flip-card-front {
+      background-color: #f1f1f1;
+      color: black;
+    }
+
+    .flip-card-back {
+      background-color: #f1f1f1;
+      color: black;
+      transform: rotateY(180deg);
+    }
+
+    .tab-content {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar with Tabs -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Matches Statistics</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a data-toggle="tab" href="#player-stats-tab">Player Stats</a></li>
+        <li><a data-toggle="tab" href="#ground-reports-tab">Ground Reports</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Tab Content -->
+  <div class="container">
+    <div class="tab-content">
+
+      <!-- Player Stats Tab -->
+      <div id="player-stats-tab" class="tab-pane fade in active">
+        <div class="card-container">
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">pat-cummins-489889</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>37</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>15</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>6</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>6</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">pat-cummins-489889</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>22</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>35</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>4</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>11</td>
+                      <td>4</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">mohammad-rizwan-323389</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>31</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>8</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>49</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>68</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>44</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>67</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>21</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>24</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>32</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>77</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">mohammad-rizwan-323389</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>36</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>46</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>TDNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>28</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>59</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">sean-abbott-398666</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>69</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>26</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>49</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>28</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>14</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">sean-abbott-398666</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>54</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>23</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">aamer-jamal-793441</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">aamer-jamal-793441</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">cooper-connolly-1210488</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">cooper-connolly-1210488</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">abdullah-shafique-922941</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>58</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>20</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>52</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>19</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">abdullah-shafique-922941</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>4</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>68</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>64</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>113</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">jake-fraser-mcgurk-1168049</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">jake-fraser-mcgurk-1168049</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>41</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">salman-agha-623977</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>58</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>31</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>45</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>24</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">salman-agha-623977</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>51</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>23</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>TDNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>14</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>57</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>25</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">aaron-hardie-1124283</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>44</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>23</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>26</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">aaron-hardie-1124283</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">arafat-minhas-1332783</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">arafat-minhas-1332783</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">josh-hazlewood-288284</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">josh-hazlewood-288284</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>23</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">babar-azam-348144</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>50</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>74</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>50</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>29</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>151</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>60</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>107</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>54</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">babar-azam-348144</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>38</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>18</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>17</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>TDNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>53</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>65</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">josh-inglis-662235</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>38</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>14</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>13</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>45</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>50</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>26</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">josh-inglis-662235</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>8</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>65</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>28</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>58</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>6</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">faisal-akram-1171134</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">faisal-akram-1171134</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">marnus-labuschagne-787987</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>19</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>26</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>71</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>18</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>62</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>8</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>27</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>72</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>39</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">marnus-labuschagne-787987</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>4</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>18</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>14</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>40</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>46</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>27</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">haris-rauf-1161606</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>16</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>5</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">haris-rauf-1161606</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>35</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>absent</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>TDNB</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">glenn-maxwell-325026</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>30</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>41</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>106</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>15</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>8</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>14</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>25</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">glenn-maxwell-325026</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>16</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>30</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>59</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">haseebullah-khan-1171127</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">haseebullah-khan-1171127</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">matthew-short-605575</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>14</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>29</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>41</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">matthew-short-605575</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>58</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>9</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">irfan-khan-1199426</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">irfan-khan-1199426</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">steven-smith-267192</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>60</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>4</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>44</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>18</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>71</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>46</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>74</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>41</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">steven-smith-267192</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>32</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>4</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>30</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>19</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>28</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">kamran-ghulam-623636</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>sub</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">kamran-ghulam-623636</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">mitchell-starc-311592</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>28</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">mitchell-starc-311592</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>27</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>1</td>
+                      <td>5</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">mohammad-hasnain-1158100</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">mohammad-hasnain-1158100</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>28</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>5</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">marcus-stoinis-325012</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>35</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>21</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>29</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>25</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>12</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>13</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>19</td>
+                      <td>-</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">marcus-stoinis-325012</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>6</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>18</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>17</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>-</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>5</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">naseem-shah-1158088</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>5</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">naseem-shah-1158088</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>absent</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>TDNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>5</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">adam-zampa-379504</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>3</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>29</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>6</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>16</td>
+                      <td>4</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">adam-zampa-379504</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>4</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">saim-ayub-1161031</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">saim-ayub-1161031</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>N/A</td>
+                      <td>N/A</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Front Side -->
+              <div class="flip-card-front">
+                <div class="player-header">
+                  <button class="btn btn-success">shaheen-shah-afridi-1072470</button>
+                  <button class="btn btn-primary flip-btn">Flip to Back</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting First</th>
+                      <th>Bowling Second</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>2</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>12</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>7</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>2</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Back Side -->
+              <div class="flip-card-back">
+                <div class="player-header">
+                  <button class="btn btn-success">shaheen-shah-afridi-1072470</button>
+                  <button class="btn btn-primary flip-btn">Flip to Front</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Batting Second</th>
+                      <th>Bowling First</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td>25</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>0</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>10</td>
+                      <td>5</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>TDNB</td>
+                      <td>1</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>4</td>
+                      <td>4</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>0</td>
+                      <td>2</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>DNB</td>
+                      <td>3</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Ground Reports Tab -->
+      <div id="ground-reports-tab" class="tab-pane fade">
+        <h2>Ground Reports</h2>
+        <table id="groundReportsTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>Australia 232 for 2 (Smith 79*, Green 77*, Inglis 65) beat West Indies 231 (Carty 88, Chase 59, Bartlett 4-17) by eight wickets</td>
+            </tr>
+            
+            <tr>
+              <td>Australia 5 for 355 (Head 152, Warner 106, Stone 4-85) beat England 142 (Roy 33, Zampa 4-31) by 221 runs (DLS method)</td>
+            </tr>
+            
+            <tr>
+              <td>India 3 for 234 (Dhoni 87*, Jadhav 61*) beat Australia 230 (Handscomb 58, Chahal 6-42) by seven wickets</td>
+            </tr>
+            
+            <tr>
+              <td>England 5 for 308 (Roy 180, Root 91*) beat Australia 8 for 304 (Finch 107, Stoinis 60, Marsh 50, Plunkett 3-71) by 5 wickets</td>
+            </tr>
+            
+            <tr>
+              <td>Pakistan 4 for 221 (Hafeez 72, Malik 42*) beat Australia 220 (Smith 60, Amir 3-47) by six wickets</td>
+            </tr>
+            
+            <tr>
+              <td>any</td>
+            </tr>
+            
+            <tr>
+              <td>Australia 8 for 264 (Warner 156, Boult 3-49) beat New Zealand 147 (Guptill 34, Starc 3-34) by 117 runs</td>
+            </tr>
+            
+            <tr>
+              <td>Australia</td>
+            </tr>
+            
+            <tr>
+              <td> Australia 186 for 3 (Clarke 74, Smith 56*) beat New Zealand 183 (Elliott 83, Johnson 3-30, Faulkner 3-36) by 7 wickets </td>
+            </tr>
+            
+            <tr>
+              <td>Sydney Morning Herald</td>
+            </tr>
+            
+            <tr>
+              <td>India 302 for 6 (Rohit 137, Raina 65, Taskin 3-69) beat Bangladesh 193 (Nasir 35, Yadav 4-31, Shami 2-37) by 109 runs</td>
+            </tr>
+            
+            <tr>
+              <td>Sri Lanka 332 for 1 (Dilshan 161*, Sangakkara 105*) beat Bangladesh 240 (Sabbir 53, Shakib 46, Malinga 3-35) by 92 runs </td>
+            </tr>
+            
+            <tr>
+              <td>India 307 for 7 (Dhawan 137, Rahane 79) beat South Africa 177 (Du Plessis 55, Ashwin 3-41) by 130 runs</td>
+            </tr>
+            
+            <tr>
+              <td>Sri Lanka</td>
+            </tr>
+            
+            <tr>
+              <td>Australia 4 for 297 (Watson 161*) beat England 294 (Pietersen 78, Strauss 63) by six wickets</td>
+            </tr>
+            
+            <tr>
+              <td>Sri Lanka 9 for 243 (Mathews 77*, Malinga 56, Doherty 4-46) beat Australia 8 for 239 (Hussey 71*, Perera 5-46) by 1 wicket</td>
+            </tr>
+            
+            <tr>
+              <td> Australia</td>
+            </tr>
+            
+            <tr>
+              <td>New Zealand 4 for 226 (Elliott 61*) beat Australia 5 for 225 (Clarke 98, M Hussey 75) by six wickets</td>
+            </tr>
+            
+            <tr>
+              <td>South Africa</td>
+            </tr>
+            
+            <tr>
+              <td>India</td>
+            </tr>
+            
+            <tr>
+              <td>England 6 for 253 (Collingwood 120*, Bell 65, Lee 3-41) beat Australia 252 (Hayden 82, Ponting 75, Flintoff 3-41) by four wickets</td>
+            </tr>
+            
+            <tr>
+              <td>Australia 5 for 291 (Ponting 104, Hodge 99*) beat New Zealand 7 for 290 (Vincent 90, Fulton 60) by five wickets</td>
+            </tr>
+            
+            <tr>
+              <td>In our</td>
+            </tr>
+            
+            <tr>
+              <td>series, we rewind to classic matches to bring you the ball-by-ball commentary and match coverage as if the games were happening live, for the first time.</td>
+            </tr>
+            
+            <tr>
+              <td>Pakistan 249 for 6 (Imran 72, Miandad 58, Pringle 3-22) beat England 227 (Fairbrother 62, Akram 3-49, Mushtaq 3-41) by 22 runs</td>
+            </tr>
+            
+            <tr>
+              <td>&#34;Ghabrana nahin hai (don&#39;t panic)&#34;</td>
+            </tr>
+            
+            <tr>
+              <td>For more</td>
+            </tr>
+            
+            <tr>
+              <td>coverage, click here</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

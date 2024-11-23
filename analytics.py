@@ -62,25 +62,33 @@ def stats():
 	
 	print(player_ids)
 	stats=[]
-	for i in player_ids:
-	    print(i)
-	    tempdata={}
-	    tempsplit=i["name"].split("-")
-	    Batting_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
-	    Bowling_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
-	    Batting_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
-	    Bowling_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
-	    batting_first_data=parsebatting(Batting_First)
-	    batting_second_data=parsebatting(Batting_Second)
-	    bowling_first_data=parsebowling(Bowling_First)
-	    bowling_second_data=parsebowling(Bowling_Second)
-	    tempdata["player_name"]=i["name"]
-	    tempdata["team"]=i["team"]
-	    tempdata["Batting_First"]=batting_first_data
-	    tempdata["Bowling_First"]=bowling_first_data
-	    tempdata["Batting_Second"]=batting_second_data
-	    tempdata["Bowling_Second"]=bowling_second_data
-	    stats.append(tempdata)
+	output_file = "output.csv"
+	with open(output_file, mode='w', newline='') as file:
+		writer = csv.writer(file)  
+		writer.writerow(["player","Innings","Runs","wickets"])
+		for i in player_ids:
+		    print(i)
+		    tempdata={}
+		    tempsplit=i["name"].split("-")
+		    Batting_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
+		    Bowling_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
+		    Batting_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
+		    Bowling_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
+		    batting_first_data=parsebatting(Batting_First)
+		    batting_second_data=parsebatting(Batting_Second)
+		    bowling_first_data=parsebowling(Bowling_First)
+		    bowling_second_data=parsebowling(Bowling_Second)
+		    tempdata["player_name"]=i["name"]
+		    tempdata["team"]=i["team"]
+		    tempdata["Batting_First"]=batting_first_data
+		    tempdata["Bowling_First"]=bowling_first_data
+		    tempdata["Batting_Second"]=batting_second_data
+		    tempdata["Bowling_Second"]=bowling_second_data
+		    stats.append(tempdata)
+		    for x, y in zip(batting_first_data, bowling_second_data):
+		    	writer.writerow([i["name"],"1",x, y])
+		    for x, y in zip(batting_second_data, bowling_first_data):
+		    	writer.writerow([i["name"],"2",x, y])
 	# # Specify the filename
 	# filename = 'player_performance_data.csv'
 

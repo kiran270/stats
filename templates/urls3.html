@@ -89,7 +89,8 @@
     .tab-content {
       margin-top: 20px;
     }
-  </style>
+</style>
+
 </head>
 
 <body>
@@ -103,6 +104,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a data-toggle="tab" href="#player-stats-tab">Player Stats</a></li>
         <li><a data-toggle="tab" href="#ground-reports-tab">Ground Reports</a></li>
+        <li><a data-toggle="tab" href="#session-data-tab">Session Data</a></li>
       </ul>
     </div>
   </nav>
@@ -171,24 +173,80 @@
       </div>
 
       <!-- Ground Reports Tab -->
+            <!-- Ground Reports Tab -->
       <div id="ground-reports-tab" class="tab-pane fade">
-        <h2>Ground Reports</h2>
-        <table id="groundReportsTable" class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Report</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for report in reports %}
-            <tr>
-              <td>{{ report }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+        <div class="row">
+          <!-- Summary Table Column -->
+          <div class="col-md-3">
+            <h2>Summary Stats</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Statistic</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Batting Win</td>
+                  <td>{{ summary.batting_win_count }}</td>
+                </tr>
+                <tr>
+                  <td>Chasing Win</td>
+                  <td>{{ summary.chasing_win_count }}</td>
+                </tr>
+                <!-- Add more summary rows as needed -->
+              </tbody>
+            </table>
+          </div>
 
+          <!-- Ground Reports Table Column -->
+          <div class="col-md-9">
+            <h2>Ground Reports</h2>
+            <table id="groundReportsTable" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Report</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for report in reports %}
+                <tr>
+                  <td>{{ report }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="session-data-tab" class="tab-pane fade">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Session Data</h2>
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Team A 6 Over Score</th>
+                    <th>Team A Lambi Score</th>
+                    <th>Team B 6 Over Score</th>
+                    <th>Team B Lambi Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for score in session_scores %}
+                  <tr>
+                    <td>{{ score.teamA_6 }}</td>
+                    <td>{{ score.teamA_lambi }}</td>
+                    <td>{{ score.teamB_6 }}</td>
+                    <td>{{ score.teamB_lambi }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 
