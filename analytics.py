@@ -65,7 +65,7 @@ def stats():
 	output_file = "output.csv"
 	with open(output_file, mode='w', newline='') as file:
 		writer = csv.writer(file)  
-		writer.writerow(["player","Innings","Runs","wickets"])
+		writer.writerow(["player","Innings","Runs","wickets","opposition","ground"])
 		for i in player_ids:
 		    print(i)
 		    tempdata={}
@@ -74,8 +74,8 @@ def stats():
 		    Bowling_First="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
 		    Batting_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=2;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=batting;view=innings"
 		    Bowling_Second="https://stats.espncricinfo.com/ci/engine/player/"+tempsplit[len(tempsplit)-1]+".html?batting_fielding_first=1;class="+ftype+";filter=advanced;orderby=start;orderbyad=reverse;template=results;type=bowling;view=innings"
-		    batting_first_data=parsebatting(Batting_First)
-		    batting_second_data=parsebatting(Batting_Second)
+		    batting_first_data,fulldetails_batfirst=parsebatting(Batting_First)
+		    batting_second_data,fulldetails_batsecond=parsebatting(Batting_Second)
 		    bowling_first_data=parsebowling(Bowling_First)
 		    bowling_second_data=parsebowling(Bowling_Second)
 		    tempdata["player_name"]=i["name"]
@@ -85,26 +85,10 @@ def stats():
 		    tempdata["Batting_Second"]=batting_second_data
 		    tempdata["Bowling_Second"]=bowling_second_data
 		    stats.append(tempdata)
-		    for x, y in zip(batting_first_data, bowling_second_data):
-		    	writer.writerow([i["name"],"1",x, y])
-		    for x, y in zip(batting_second_data, bowling_first_data):
-		    	writer.writerow([i["name"],"2",x, y])
-	# # Specify the filename
-	# filename = 'player_performance_data.csv'
-
-	# # Extract the keys from the first dictionary in the stats list to use as headers
-	# if stats:
-	#     headers = stats[0].keys()
-
-	# # Write the data to a CSV file
-	# with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
-	#     writer = csv.DictWriter(csvfile, fieldnames=headers)
-	#     writer.writeheader()  # Write the header row
-	#     writer.writerows(stats)  # Write all rows
-
-	# print(f"Data successfully written to {filename}")
-	# # create_dream11_teams(stats)
-	# # print(stats)
+		    for x, y in zip(fulldetails_batfirst, bowling_second_data):
+		    	writer.writerow([i["name"],"1",x["runs"], y,x["opposition"],x["ground"]])
+		    for x, y in zip(fulldetails_batsecond, bowling_first_data):
+		    	writer.writerow([i["name"],"2",x["runs"], y,x["opposition"],x["ground"]])
 	if ground_url!="":
 		reports,summarystats=groundstats(ground_url)
 		session_scores=sessionData(ground_url)
@@ -244,6 +228,7 @@ def parsebatting(url):
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
 	}
 	data=[]
+	fulldetails=[]
 	response = requests.get(url,headers=headers)
 	soup = BeautifulSoup(response.text, 'html.parser')
 	engineTables=soup.find_all('table',class_='engineTable')
@@ -251,11 +236,19 @@ def parsebatting(url):
 		temp= i.find_all('caption')
 		if len(temp) > 0:
 			if temp[0].text=="Innings by innings list":
-				runs= i.find_all('td', class_='padAst')
-				if len(runs) > 0:
-					for x in range(0,len(runs)):
-						data.append(runs[x].text)
-	return data
+				rows= i.find_all('tr')
+				print(len(rows))
+				for z in range(1,len(rows)):
+					details={}
+					runs = rows[z].find_all('td')[0].text.strip()  # 2nd <td> contains runs
+					opposition = rows[z].find_all('td')[10].text.strip().replace("v ", "")  # 11th <td> contains opposition
+					ground = rows[z].find_all('td')[11].text.strip() 
+					details["runs"]=runs
+					details["opposition"]=opposition
+					details["ground"]=ground
+					data.append(runs)
+					fulldetails.append(details)
+	return data,fulldetails
 def parsebowling(url):
 	print(url)
 	headers = {

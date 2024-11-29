@@ -1,0 +1,651 @@
+Enter the details for prediction:
+
+Predicted Scores Table:47/10
+ Over  Score  Wickets  Predicted Final Score
+    6     32        2                 110.23
+    7     38        3                 124.91
+    8     45        5                  94.28
+    9     47        6                  63.44
+   10     47        7                  50.56
+   11     47        8                  48.67
+   12     47       10                  46.94
+
+Predicted Scores Table:164/4
+ Over  Score  Wickets  Predicted Final Score
+    6     57        0                 188.63
+    7     62        1                 169.62
+    8     71        1                 166.61
+    9     75        1                 170.33
+   10     82        1                 174.09
+   11     87        2                 170.58
+   12     95        2                 165.00
+   13     97        3                 184.52
+   14    103        3                 159.23
+   15    116        3                 167.29
+
+Predicted Scores Table:77/10
+ Over  Score  Wickets  Predicted Final Score
+    6     24        1                 103.15
+    7     30        1                 105.60
+    8     31        2                  94.30
+    9     36        4                  84.81
+   10     40        5                  79.36
+   11     44        5                  80.69
+   12     46        6                  75.15
+   13     53        6                  80.30
+   14     61        6                  80.94
+   15     68        7                  82.34
+
+Predicted Scores Table:146/5
+ Over  Score  Wickets  Predicted Final Score
+    6     41        1                 127.49
+    7     51        1                 129.06
+    8     55        1                 130.63
+    9     60        1                 143.83
+   10     67        1                 142.48
+   11     79        1                 156.18
+   12     96        1                 173.08
+   13     98        2                 178.35
+   14    104        2                 165.01
+   15    112        3                 165.66
+
+Predicted Scores Table:183/5
+ Over  Score  Wickets  Predicted Final Score
+    6     66        0                 185.62
+    7     75        0                 196.97
+    8     80        0                 179.38
+    9     90        0                 172.96
+   10    102        0                 198.28
+   11    113        0                 193.83
+   12    120        0                 196.23
+   13    127        0                 187.87
+   14    152        0                 193.51
+   15    156        1                 196.73
+
+Predicted Scores Table:106/10
+ Over  Score  Wickets  Predicted Final Score
+    6     29        2                 118.64
+    7     38        2                 108.47
+    8     41        3                 135.30
+    9     46        3                 108.36
+   10     53        4                 132.74
+   11     53        5                  80.94
+   12     56        5                 106.05
+   13     65        5                 103.80
+   14     68        6                 102.53
+   15     75        6                 106.57
+
+Predicted Scores Table:154/6
+ Over  Score  Wickets  Predicted Final Score
+    6     75        3                 211.53
+    7     95        3                 232.27
+    8    105        4                 178.82
+    9    122        5                 159.83
+   10    139        5                 283.93
+   11    154        6                 270.96
+
+Predicted Scores Table:99/8
+ Over  Score  Wickets  Predicted Final Score
+    6     18        2                  61.52
+    7     23        2                  73.51
+    8     31        2                  94.30
+    9     33        2                 103.78
+   10     38        2                  92.28
+   11     39        2                  88.09
+   12     45        3                  96.78
+   13     55        3                 104.48
+   14     60        4                  99.93
+   15     63        6                  81.09
+
+Predicted Scores Table:141/6
+ Over  Score  Wickets  Predicted Final Score
+    6     45        0                 170.63
+    7     47        1                 131.21
+    8     52        1                 145.27
+    9     60        1                 143.83
+   10     63        1                 137.61
+   11     66        2                 140.04
+   12     70        2                 134.16
+   13     74        3                 138.10
+   14     80        3                 140.45
+   15     91        4                 133.64
+
+Predicted Scores Table:129/4
+ Over  Score  Wickets  Predicted Final Score
+    6     23        0                 133.58
+    7     26        0                 137.08
+    8     28        0                 134.39
+    9     41        0                 131.74
+   10     47        0                 122.36
+   11     52        0                 120.49
+   12     55        0                 118.78
+   13     59        1                 112.78
+   14     67        1                 107.26
+   15     71        2                 116.68
+
+Predicted Scores Table:171/8
+ Over  Score  Wickets  Predicted Final Score
+    6     63        2                 139.87
+    7     65        3                 161.88
+    8     67        3                 173.76
+    9     78        3                 197.37
+   10     85        3                 159.04
+   11     93        3                 163.67
+   12    108        3                 192.58
+   13    120        3                 190.62
+   14    125        4                 192.81
+   15    129        4                 154.44
+
+Predicted Scores Table:72/10
+ Over  Score  Wickets  Predicted Final Score
+    6     17        3                  99.79
+    7     18        3                  90.29
+    8     19        4                  47.13
+    9     21        5                  42.44
+   10     27        5                  53.17
+   11     33        6                  86.35
+   12     36        6                  62.73
+   13     43        8                  56.95
+   14     51        8                  62.22
+   15     60        8                  73.20
+
+Predicted Scores Table:115/10
+ Over  Score  Wickets  Predicted Final Score
+    6     21        3                 109.29
+    7     33        3                 117.21
+    8     40        3                 122.49
+    9     48        3                 113.21
+   10     57        3                 143.03
+   11     67        3                 149.70
+   12     78        4                 136.06
+   13     92        5                 128.35
+   14     96        7                 120.23
+   15    103        9                 126.45
+
+Predicted Scores Table:104/9
+ Over  Score  Wickets  Predicted Final Score
+    6     36        2                 101.48
+    7     39        2                 106.81
+    8     43        2                 123.64
+    9     46        3                 108.36
+   10     51        4                 111.54
+   11     56        5                 106.91
+   12     59        5                 102.83
+   13     66        5                 103.89
+   14     68        6                 102.53
+   15     77        6                 109.52
+
+Predicted Scores Table:148/6
+ Over  Score  Wickets  Predicted Final Score
+    6     40        0                 172.23
+    7     48        0                 177.38
+    8     52        0                 153.59
+    9     56        0                 143.15
+   10     64        0                 140.93
+   11     74        0                 150.85
+   12     83        0                 166.22
+   13     96        0                 155.29
+   14    104        0                 151.68
+   15    109        0                 164.36
+
+Predicted Scores Table:174/7
+ Over  Score  Wickets  Predicted Final Score
+    6     48        0                 170.26
+    7     51        0                 157.99
+    8     58        1                 168.28
+    9     61        1                 151.92
+   10     77        1                 157.73
+   11     86        1                 172.51
+   12     96        3                 172.75
+   13    103        3                 177.87
+   14    109        3                 170.17
+   15    119        4                 167.94
+
+Predicted Scores Table:41/10
+ Over  Score  Wickets  Predicted Final Score
+    6     13        5                  28.86
+    7     15        5                  37.85
+    8     23        5                  44.52
+    9     37        5                  57.82
+   10     37        6                  54.08
+   11     38        8                  59.88
+   12     38        9                  50.76
+   13     41       10                  44.40
+
+Predicted Scores Table:161/4
+ Over  Score  Wickets  Predicted Final Score
+    6     60        0                 184.83
+    7     68        0                 173.10
+    8     69        0                 166.96
+    9     74        0                 177.84
+   10     85        1                 164.18
+   11     94        1                 167.55
+   12     99        1                 189.32
+   13    113        1                 173.58
+   14    124        1                 170.15
+   15    129        2                 163.62
+
+Predicted Scores Table:171/6
+ Over  Score  Wickets  Predicted Final Score
+    6     62        0                 173.18
+    7     65        0                 180.81
+    8     73        1                 165.37
+    9     80        1                 171.70
+   10     83        2                 176.12
+   11     85        2                 176.51
+   12     93        3                 164.29
+   13     97        3                 184.52
+   14    102        3                 171.75
+   15    109        3                 156.64
+
+Predicted Scores Table:169/10
+ Over  Score  Wickets  Predicted Final Score
+    6     35        1                 164.18
+    7     44        1                 160.53
+    8     55        2                 138.67
+    9     65        2                 135.34
+   10     81        2                 178.10
+   11     96        2                 187.89
+   12    103        2                 183.83
+   13    118        2                 179.08
+   14    131        2                 191.50
+   15    141        2                 182.40
+
+Predicted Scores Table:195/7
+ Over  Score  Wickets  Predicted Final Score
+    6     28        3                 166.61
+    7     38        3                 124.91
+    8     45        3                 154.76
+    9     48        4                 167.48
+   10     57        4                 148.88
+   11     69        4                 172.56
+   12     77        4                 164.70
+   13     87        4                 168.75
+   14     96        4                 172.71
+   15    103        6                 175.88
+
+Predicted Scores Table:135/4
+ Over  Score  Wickets  Predicted Final Score
+    6     35        0                 158.69
+    7     37        1                 113.87
+    8     40        1                 113.30
+    9     44        1                 118.42
+   10     48        1                 125.91
+   11     58        1                 118.24
+   12     66        1                 131.91
+   13     76        1                 138.61
+   14     95        1                 152.48
+   15     99        1                 149.12
+
+Predicted Scores Table:47/10
+ Over  Score  Wickets  Predicted Final Score
+    6     25        4                  80.83
+    7     30        5                  62.10
+    8     32        6                  51.39
+    9     35        7                  51.38
+   10     35        7                  47.54
+   11     36        8                  48.50
+   12     45        8                  54.05
+   13     47        9                  47.54
+   14     47       10                  47.16
+
+Predicted Scores Table:271/4
+ Over  Score  Wickets  Predicted Final Score
+    6     73        0                 233.17
+    7     84        0                 214.18
+    8     95        0                 217.28
+    9    109        0                 219.81
+   10    128        1                 267.48
+   11    138        1                 234.80
+   12    161        1                 272.36
+   13    173        1                 265.53
+   14    186        1                 278.08
+   15    198        3                 295.71
+
+Predicted Scores Table:185/4
+ Over  Score  Wickets  Predicted Final Score
+    6     67        0                 191.59
+    7     73        0                 178.53
+    8     81        0                 182.25
+    9     85        1                 186.82
+   10     88        1                 192.64
+   11     95        1                 178.36
+   12    108        1                 191.91
+   13    110        1                 177.65
+   14    112        2                 184.14
+   15    124        2                 182.85
+
+Predicted Scores Table:170/7
+ Over  Score  Wickets  Predicted Final Score
+    6     56        0                 173.12
+    7     67        0                 173.16
+    8     73        0                 171.18
+    9     88        0                 183.68
+   10     98        0                 184.95
+   11    101        1                 174.34
+   12    104        2                 177.09
+   13    120        2                 178.85
+   14    132        2                 190.57
+   15    136        2                 177.75
+
+Predicted Scores Table:47/7
+ Over  Score  Wickets  Predicted Final Score
+    6     12        1                 111.22
+    7     16        1                  96.24
+    8     18        1                  81.46
+    9     21        2                  59.21
+   10     22        2                  55.26
+   11     23        2                  51.33
+   12     25        3                  51.64
+   13     26        3                  53.36
+   14     28        4                  57.49
+   15     31        5                  47.81
+
+Predicted Scores Table:162/8
+ Over  Score  Wickets  Predicted Final Score
+    6     42        2                 146.78
+    7     46        2                 167.30
+    8     49        2                 170.37
+    9     53        3                 146.32
+   10     55        4                 120.47
+   11     62        4                 139.14
+   12     68        5                 145.52
+   13     78        5                 132.69
+   14     86        5                 146.62
+   15    111        5                 154.45
+
+Predicted Scores Table:158/5
+ Over  Score  Wickets  Predicted Final Score
+    6     43        0                 153.58
+    7     51        0                 157.99
+    8     62        0                 180.17
+    9     66        0                 165.68
+   10     77        0                 158.87
+   11     87        0                 161.50
+   12     99        0                 188.60
+   13    105        0                 161.49
+   14    110        1                 168.78
+   15    114        1                 161.17
+
+Predicted Scores Table:121/4
+ Over  Score  Wickets  Predicted Final Score
+    6     63        2                 139.87
+    7     69        2                 142.23
+    8     81        2                 131.01
+    9     89        3                 215.64
+   10    104        3                 154.10
+   11    111        3                 213.93
+   12    116        4                 141.44
+   13    121        4                 181.94
+
+Predicted Scores Table:90/10
+ Over  Score  Wickets  Predicted Final Score
+    6     35        3                 125.35
+    7     42        3                 135.79
+    8     49        3                 125.94
+    9     50        5                 126.70
+   10     56        5                 128.24
+   11     59        5                 125.84
+   12     65        6                 118.36
+   13     69        6                 108.34
+   14     73        6                 105.42
+   15     76        7                 113.02
+
+Predicted Scores Table:149/8
+ Over  Score  Wickets  Predicted Final Score
+    6     34        2                 131.09
+    7     47        2                 121.89
+    8     58        2                 138.05
+    9     68        2                 161.05
+   10     76        2                 158.90
+   11     81        2                 153.35
+   12     85        3                 149.50
+   13     90        4                 143.30
+   14    101        4                 152.95
+   15    106        4                 155.81
+
+Predicted Scores Table:123/10
+ Over  Score  Wickets  Predicted Final Score
+    6     34        1                 115.03
+    7     47        2                 121.89
+    8     51        2                 145.84
+    9     65        2                 135.34
+   10     68        3                 159.94
+   11     74        3                 135.73
+   12     78        4                 136.06
+   13     80        5                 138.36
+   14     87        5                 124.08
+   15     94        5                 135.61
+
+Predicted Scores Table:156/5
+ Over  Score  Wickets  Predicted Final Score
+    6     38        2                 128.93
+    7     54        2                 164.22
+    8     58        3                 157.68
+    9     62        3                 152.37
+   10     71        3                 148.83
+   11     76        3                 124.97
+   12     83        3                 157.36
+   13     95        3                 160.77
+   14    100        3                 164.17
+   15    116        3                 167.29
+
+Predicted Scores Table:171/5
+ Over  Score  Wickets  Predicted Final Score
+    6     48        1                 126.38
+    7     51        1                 129.06
+    8     58        2                 138.05
+    9     71        2                 166.82
+   10     79        2                 192.98
+   11     84        2                 184.53
+   12     91        3                 180.05
+   13     99        3                 177.98
+   14    112        3                 177.82
+   15    117        4                 162.40
+
+Predicted Scores Table:206/4
+ Over  Score  Wickets  Predicted Final Score
+    6     36        1                 134.73
+    7     40        1                 127.88
+    8     49        1                 154.02
+    9     53        2                 136.72
+   10     60        2                 156.75
+   11     66        3                 146.05
+   12     84        3                 146.60
+   13    102        3                 169.11
+   14    116        3                 169.21
+   15    133        3                 188.01
+
+Predicted Scores Table:150/7
+ Over  Score  Wickets  Predicted Final Score
+    6     53        2                 188.18
+    7     61        3                 165.25
+    8     66        3                 162.06
+    9     72        4                 159.99
+   10     78        4                 151.98
+   11     87        4                 162.99
+   12     89        4                 140.33
+   13     92        4                 142.46
+   14    105        4                 154.93
+   15    113        4                 167.38
+
+Predicted Scores Table:167/8
+ Over  Score  Wickets  Predicted Final Score
+    6     49        0                 185.17
+    7     54        0                 161.30
+    8     66        0                 177.92
+    9     70        1                 177.88
+   10     77        1                 157.73
+   11     83        1                 173.42
+   12     87        2                 151.32
+   13     91        3                 159.09
+   14    101        3                 174.78
+   15    111        3                 172.53
+
+Predicted Scores Table:226/8
+ Over  Score  Wickets  Predicted Final Score
+    6     56        2                 169.65
+    7     61        2                 176.00
+    8     70        2                 169.28
+    9     81        2                 175.70
+   10     99        2                 208.78
+   11    119        2                 214.75
+   12    131        3                 221.44
+   13    150        3                 221.98
+   14    159        3                 231.83
+   15    168        4                 240.85
+
+Predicted Scores Table:106/7
+ Over  Score  Wickets  Predicted Final Score
+    6     30        2                 121.00
+    7     43        3                 124.66
+    8     50        3                 127.66
+    9     52        3                 117.14
+   10     55        5                 135.00
+   11     63        5                 146.58
+   12     66        5                 107.44
+   13     73        5                 128.91
+   14     75        6                 114.43
+   15     77        6                 109.52
+
+Predicted Scores Table:176/2
+ Over  Score  Wickets  Predicted Final Score
+    6     31        0                 146.59
+    7     49        0                 186.24
+    8     54        0                 157.49
+    9     72        1                 189.42
+   10     79        2                 192.98
+   11     84        2                 184.53
+   12     91        2                 178.24
+   13    102        2                 169.90
+   14    110        2                 177.55
+   15    114        2                 164.40
+
+Predicted Scores Table:180/6
+ Over  Score  Wickets  Predicted Final Score
+    6     51        2                 173.76
+    7     54        2                 164.22
+    8     64        3                 172.65
+    9     66        3                 168.05
+   10     68        3                 159.94
+   11     79        3                 171.34
+   12     92        3                 162.53
+   13    100        3                 164.99
+   14    106        4                 162.19
+   15    120        4                 166.42
+
+Predicted Scores Table:106/5
+ Over  Score  Wickets  Predicted Final Score
+    6     33        1                 107.50
+    7     39        1                 134.62
+    8     43        1                 128.38
+    9     48        1                 139.98
+   10     50        2                 115.79
+   11     51        3                  99.45
+   12     51        4                  90.98
+   13     63        4                 115.26
+   14     70        4                  93.25
+   15     74        4                  92.84
+
+Predicted Scores Table:56/10
+ Over  Score  Wickets  Predicted Final Score
+    6     25        6                  52.48
+    7     32        6                  60.28
+    8     38        6                  63.30
+    9     45        6                  76.31
+   10     46        7                  55.16
+   11     50        8                  61.33
+   12     55        8                  61.08
+   13     56        9                  58.06
+   14     56       10                  57.14
+
+Predicted Scores Table:77/10
+ Over  Score  Wickets  Predicted Final Score
+    6     33        3                 126.77
+    7     36        4                 119.77
+    8     40        4                  90.01
+    9     42        4                 106.45
+   10     48        4                  95.91
+   11     48        5                  83.85
+   12     51        5                  81.41
+   13     51        6                  81.53
+   14     54        6                  79.97
+   15     56        6                  81.41
+
+Predicted Scores Table:142/5
+ Over  Score  Wickets  Predicted Final Score
+    6     43        0                 153.58
+    7     47        0                 168.33
+    8     53        1                 137.16
+    9     59        1                 139.48
+   10     61        2                 138.49
+   11     63        2                 133.81
+   12     76        2                 142.20
+   13     78        3                 136.13
+   14     84        3                 135.76
+   15     95        3                 137.33
+
+Predicted Scores Table:85/10
+ Over  Score  Wickets  Predicted Final Score
+    6     36        3                  94.89
+    7     40        3                 101.61
+    8     47        4                 140.84
+    9     49        4                  99.23
+   10     55        4                 120.47
+   11     60        4                 132.58
+   12     64        5                 105.23
+   13     70        5                  92.09
+   14     70        7                  89.10
+   15     79        7                 106.91
+
+Predicted Scores Table:147/5
+ Over  Score  Wickets  Predicted Final Score
+    6     32        2                 110.23
+    7     35        2                 135.52
+    8     41        3                 135.30
+    9     44        3                 135.32
+   10     55        3                 118.59
+   11     66        3                 146.05
+   12     71        4                 149.17
+   13     74        4                 130.72
+   14     77        4                 132.72
+   15     96        4                 144.71
+
+Predicted Scores Table:104/6
+ Over  Score  Wickets  Predicted Final Score
+    6     21        1                  82.95
+    7     25        1                 105.18
+    8     30        2                 120.46
+    9     36        4                  84.81
+   10     44        4                  98.39
+   11     46        5                  99.33
+   12     54        5                 109.98
+   13     65        5                 103.80
+   14     70        5                 100.08
+   15     76        6                 106.14
+
+Predicted Scores Table:201/7
+ Over  Score  Wickets  Predicted Final Score
+    6     74        2                 214.14
+    7     82        2                 213.12
+    8     85        2                 177.57
+    9     97        2                 207.75
+   10    102        2                 215.44
+   11    111        2                 213.85
+   12    118        2                 193.51
+   13    136        2                 207.29
+   14    140        3                 199.82
+   15    149        4                 217.04
+
+Predicted Scores Table:136/8
+ Over  Score  Wickets  Predicted Final Score
+    6     34        3                 142.94
+    7     39        3                 140.24
+    8     47        3                 150.66
+    9     52        4                 130.52
+   10     57        4                 148.88
+   11     62        4                 139.14
+   12     67        4                 126.80
+   13     81        4                 138.62
+   14     90        4                 136.03
+   15     94        5                 135.61
