@@ -13,7 +13,18 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+	html_files = [f for f in os.listdir("templates/Match_pages/") if f.endswith('.html')]
+	print("HTML files:", html_files)
+	return render_template("matches.html",html_files=html_files)
+
+@app.route("/addmatch")
+def addmatch():
 	return render_template("index.html")
+
+@app.route("/viewdetails",methods = ["POST"])
+def viewdetails():
+	filename=request.form.get("viewdetails_filename")
+	return render_template("Match_pages/"+filename)
 
 @app.route("/getstats",methods = ["POST","GET"])
 def stats():
@@ -81,22 +92,6 @@ def stats():
 	    tempdata["Batting_Second"]=batting_second_data
 	    tempdata["Bowling_Second"]=bowling_second_data
 	    stats.append(tempdata)
-	# # Specify the filename
-	# filename = 'player_performance_data.csv'
-
-	# # Extract the keys from the first dictionary in the stats list to use as headers
-	# if stats:
-	#     headers = stats[0].keys()
-
-	# # Write the data to a CSV file
-	# with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
-	#     writer = csv.DictWriter(csvfile, fieldnames=headers)
-	#     writer.writeheader()  # Write the header row
-	#     writer.writerows(stats)  # Write all rows
-
-	# print(f"Data successfully written to {filename}")
-	# # create_dream11_teams(stats)
-	# # print(stats)
 	if ground_url!="":
 		reports,summarystats=groundstats(ground_url)
 		session_scores=sessionData(ground_url)
@@ -105,7 +100,11 @@ def stats():
 		summarystats=[]
 		session_scores=[]
 	sorted_data = sorted(stats, key=lambda x: x["team"])
-	return render_template("urls3.html",stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores)
+	squad_url_split=squad_url.split("/")
+	rendered_html = render_template('urls3.html', stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores)
+	with open("templates/Match_pages/"+squad_url_split[5]+".html", "w", encoding="utf-8") as file:
+		file.write(rendered_html)
+	return rendered_html
 def groundstats(ground_url):
 	reports=[]
 	headers = {
