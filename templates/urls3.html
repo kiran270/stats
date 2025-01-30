@@ -105,6 +105,7 @@
         <li class="active"><a data-toggle="tab" href="#player-stats-tab">Player Stats</a></li>
         <li><a data-toggle="tab" href="#ground-reports-tab">Ground Reports</a></li>
         <li><a data-toggle="tab" href="#session-data-tab">Session Data</a></li>
+        <li><a data-toggle="tab" href="#dreamteams-tab">Dreamteams</a></li>
       </ul>
     </div>
   </nav>
@@ -247,9 +248,49 @@
             </div>
           </div>
       </div>
-    </div>
-  </div>
-
+      <div id="player-stats-tab" class="tab-pane fade in active">
+      </div>
+      <div id="dreamteams-tab" class="tab-pane fade">
+        <div class="container">
+            {% for player_list in dreamteams %}
+            {% if loop.index0 % 2 == 0 %}
+            <div class="row"> <!-- Start a new row every 3 teams -->
+            {% endif %}
+                <div class="col-md-6"> <!-- Each team takes 1/3 of the row -->
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Player Name</th>
+                                            <th>Team</th>
+                                            <th>Runs</th>
+                                            <th>Wickets</th>
+                                            <th>FP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for player in player_list %}
+                                        <tr>
+                                            <td>{{ player.player_name }}</td>
+                                            <td>{{ player.team }}</td>
+                                            <td>{{ player.runs }}</td>
+                                            <td>{{ player.wickets }}</td>
+                                            <td>{{ player.fantasy_points }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% if loop.index0 % 2 == 2 or loop.last %}
+            </div> <!-- Close the row after 3 teams -->
+            {% endif %}
+            {% endfor %}
+        </div>
+      </div>
 </body>
-
 </html>

@@ -101,10 +101,93 @@ def stats():
 		session_scores=[]
 	sorted_data = sorted(stats, key=lambda x: x["team"])
 	squad_url_split=squad_url.split("/")
-	rendered_html = render_template('urls3.html', stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores)
+	dreamteams=dreamstats(ground_url)
+	rendered_html = render_template('urls3.html', stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores,dreamteams=dreamteams)
 	with open("templates/Match_pages/"+squad_url_split[5]+".html", "w", encoding="utf-8") as file:
 		file.write(rendered_html)
 	return rendered_html
+
+def getDreamteam(url):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Referer': 'https://example.com',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+    }
+
+    # Sending the request to fetch the webpage content
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    rows = soup.find_all('tr', class_='ds-text-right')
+    player_stats = []
+    for row in rows:
+        td_elements = row.find_all('td')
+        if len(td_elements) >= 7:
+            player_name_tag = row.find('span')
+            if player_name_tag:
+                player_name = player_name_tag.text.strip()
+            else:
+                player_name = 'N/A'  # If no name found, set a default value
+            runs_str = td_elements[3].text.strip()
+            if runs_str == '-' or not runs_str.split('(')[0].strip().isdigit():
+                runs = 0  # If no valid runs, set runs to 0
+            else:
+                runs = int(runs_str.split('(')[0].strip())  # Extract only the runs (e.g., 47 from "47(31)")
+            wickets_str = td_elements[6].text.strip()
+            if wickets_str == '-' or not '/' in wickets_str:
+                wickets = 0  # If no valid wickets, set wickets to 0
+            else:
+                wickets = int(wickets_str.split('/')[0].strip())
+            fantasy_points = runs + (wickets * 25)
+            team = td_elements[1].text.strip()
+            player_stats.append({
+                'player_name': player_name,
+                'team': team,
+                'runs': runs,
+                'wickets': wickets,
+                'fantasy_points': fantasy_points
+            })
+        else:
+            continue
+    sorted_player_stats = sorted(player_stats, key=lambda x: x['fantasy_points'], reverse=True)[:11]
+    return sorted_player_stats
+
+def dreamstats(ground_url):
+    dreamteams=[]
+    headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Referer': 'https://example.com',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+        }
+    response = requests.get(ground_url,headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    batting_win_count=0
+    chasing_win_count=0
+    summarystats={}
+    trs=soup.find_all('tr')
+    for i in trs:
+        tds=i.find_all('td')
+        if 'runs' in tds[3].text:
+            batting_win_count=batting_win_count+1
+            winning_team=tds[2].text
+            print(winning_team+"Won Batting First")
+        elif 'wickets' in tds[3].text:
+            chasing_win_count=chasing_win_count+1
+            winning_team=tds[2].text
+            print(winning_team+"Won Chasing")
+        urls=i.find_all('a')
+        for x in urls:
+            if x.has_attr('href'):
+                if "full-scorecard" in x["href"]:
+                    temp=x["href"].replace("full-scorecard","match-impact-player")
+                    tempurl="https://www.espncricinfo.com"+temp
+                    x=getDreamteam(tempurl)
+                    if len(x) > 0:
+                    	dreamteams.append(getDreamteam(tempurl))
+    return dreamteams
+
 def groundstats(ground_url):
 	reports=[]
 	headers = {
