@@ -31,6 +31,7 @@ def stats():
 	squad_url=request.form.get("url")
 	ground_url=request.form.get("groundurl")
 	ftype=request.form.get("type")
+	groundname=request.form.get("groundname")
 	if ftype=="WT20":
 		ftype="23"
 	elif ftype=="MT20":
@@ -101,7 +102,7 @@ def stats():
 		session_scores=[]
 	sorted_data = sorted(stats, key=lambda x: x["team"])
 	squad_url_split=squad_url.split("/")
-	dreamteams=dreamstats(ground_url)
+	dreamteams=dreamstats(ground_url,groundname)
 	rendered_html = render_template('urls3.html', stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores,dreamteams=dreamteams)
 	with open("templates/Match_pages/"+squad_url_split[5]+".html", "w", encoding="utf-8") as file:
 		file.write(rendered_html)
@@ -153,7 +154,7 @@ def getDreamteam(url):
     sorted_player_stats = sorted(player_stats, key=lambda x: x['fantasy_points'], reverse=True)[:11]
     return sorted_player_stats
 
-def dreamstats(ground_url):
+def dreamstats(ground_url,groundname):
     dreamteams=[]
     headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -177,15 +178,21 @@ def dreamstats(ground_url):
             chasing_win_count=chasing_win_count+1
             winning_team=tds[2].text
             print(winning_team+"Won Chasing")
+        runninnggroundname=tds[4].text
         urls=i.find_all('a')
         for x in urls:
             if x.has_attr('href'):
                 if "full-scorecard" in x["href"]:
                     temp=x["href"].replace("full-scorecard","match-impact-player")
                     tempurl="https://www.espncricinfo.com"+temp
-                    x=getDreamteam(tempurl)
-                    if len(x) > 0:
-                    	dreamteams.append(getDreamteam(tempurl))
+                    if groundname=="":
+                    	x=getDreamteam(tempurl)
+                    	if len(x) > 0:
+                    		dreamteams.append(getDreamteam(tempurl))
+                    elif runninnggroundname==groundname:
+                    	x=getDreamteam(tempurl)
+                    	if len(x) > 0:
+                    		dreamteams.append(getDreamteam(tempurl))                    	
     return dreamteams
 
 def groundstats(ground_url):
