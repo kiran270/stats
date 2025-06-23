@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Matches Statistics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#statsTable').DataTable({
+        "pageLength": 50
+      });
+
+      $('#groundReportsTable').DataTable({
+        "pageLength": 10
+      });
+
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $.fn.dataTable.tables({ visible: true, api: true }).columns.adjust();
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Navbar with Tabs -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Matches Statistics</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a data-toggle="tab" href="#player-stats-tab">Player Stats</a></li>
+        <li><a data-toggle="tab" href="#ground-reports-tab">Ground Reports</a></li>
+        <li><a data-toggle="tab" href="#session-data-tab">Session Data</a></li>
+        <li><a data-toggle="tab" href="#dreamteams-tab">Dreamteams</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Tab Content -->
+  <div class="container-fluid">
+    <div class="tab-content">
+
+      <!-- ✅ Player Stats Tab -->
+      <div id="player-stats-tab" class="tab-pane fade in active col-sm-6">
+        <div class="table-responsive">
+          <table id="statsTable" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Playername</th>
+                
+                <th>M1</th>
+                
+                <th>M2</th>
+                
+                <th>M3</th>
+                
+                <th>M4</th>
+                
+                <th>M5</th>
+                
+                <th>M6</th>
+                
+                <th>M7</th>
+                
+                <th>M8</th>
+                
+                <th>M9</th>
+                
+                <th>M10</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td>miles-hammond-460079</td>
+                
+                <td>
+                  
+                    36/-
+                  
+                </td>
+                
+                <td>
+                  
+                    11/-
+                  
+                </td>
+                
+                <td>
+                  
+                    30/-
+                  
+                </td>
+                
+                <td>
+                  
+                    30/-
+                  
+                </td>
+                
+                <td>
+                  
+                    0/-
+                  
+                </td>
+                
+                <td>
+                  
+                    66/-
+                  
+                </td>
+                
+                <td>
+                  
+                    33/-
+                  
+                </td>
+                
+                <td>
+                  
+                    3/-
+                  
+                </td>
+                
+                <td>
+                  
+                    33/-
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>cameron-bancroft-501011</td>
+                
+                <td>
+                  
+                    28/-
+                  
+                </td>
+                
+                <td>
+                  
+                    18/-
+                  
+                </td>
+                
+                <td>
+                  
+                    8/-
+                  
+                </td>
+                
+                <td>
+                  
+                    21/-
+                  
+                </td>
+                
+                <td>
+                  
+                    43/-
+                  
+                </td>
+                
+                <td>
+                  
+                    87/-
+                  
+                </td>
+                
+                <td>
+                  
+                    44/-
+                  
+                </td>
+                
+                <td>
+                  
+                    34/-
+                  
+                </td>
+                
+                <td>
+                  
+                    32/-
+                  
+                </td>
+                
+                <td>
+                  
+                    29/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>oliver-price-1153276</td>
+                
+                <td>
+                  
+                    2/-
+                  
+                </td>
+                
+                <td>
+                  
+                    42/-
+                  
+                </td>
+                
+                <td>
+                  
+                    2/3
+                  
+                </td>
+                
+                <td>
+                  
+                    4/1
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+                <td>
+                  
+                    1/-
+                  
+                </td>
+                
+                <td>
+                  
+                    7/0
+                  
+                </td>
+                
+                <td>
+                  
+                    19/-
+                  
+                </td>
+                
+                <td>
+                  
+                    5/0
+                  
+                </td>
+                
+                <td>
+                  
+                    11/2
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>jack-taylor-297602</td>
+                
+                <td>
+                  
+                    16/0
+                  
+                </td>
+                
+                <td>
+                  
+                    2/-
+                  
+                </td>
+                
+                <td>
+                  
+                    7/-
+                  
+                </td>
+                
+                <td>
+                  
+                    2/-
+                  
+                </td>
+                
+                <td>
+                  
+                    7/-
+                  
+                </td>
+                
+                <td>
+                  
+                    3/-
+                  
+                </td>
+                
+                <td>
+                  
+                    52/-
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+                <td>
+                  
+                    26/-
+                  
+                </td>
+                
+                <td>
+                  
+                    5/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>ben-charlesworth-998369</td>
+                
+                <td>
+                  
+                    0/-
+                  
+                </td>
+                
+                <td>
+                  
+                    1/0
+                  
+                </td>
+                
+                <td>
+                  
+                    14/-
+                  
+                </td>
+                
+                <td>
+                  
+                    15/-
+                  
+                </td>
+                
+                <td>
+                  
+                    7/-
+                  
+                </td>
+                
+                <td>
+                  
+                    39/-
+                  
+                </td>
+                
+                <td>
+                  
+                    24/-
+                  
+                </td>
+                
+                <td>
+                  
+                    0/-
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+                <td>
+                  
+                    0/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>graeme-van-buuren-381002</td>
+                
+                <td>
+                  
+                    22/-
+                  
+                </td>
+                
+                <td>
+                  
+                    0/-
+                  
+                </td>
+                
+                <td>
+                  
+                    8/1
+                  
+                </td>
+                
+                <td>
+                  
+                    36/0
+                  
+                </td>
+                
+                <td>
+                  
+                    14/0
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+                <td>
+                  
+                    28/-
+                  
+                </td>
+                
+                <td>
+                  
+                    21/0
+                  
+                </td>
+                
+                <td>
+                  
+                    3/-
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>josh-shaw-567645</td>
+                
+                <td>
+                  
+                    0/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    14/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>matt-taylor-511247</td>
+                
+                <td>
+                  
+                    1/0
+                  
+                </td>
+                
+                <td>
+                  
+                    6/0
+                  
+                </td>
+                
+                <td>
+                  
+                    7/0
+                  
+                </td>
+                
+                <td>
+                  
+                    0/2
+                  
+                </td>
+                
+                <td>
+                  
+                    27/1
+                  
+                </td>
+                
+                <td>
+                  
+                    1/1
+                  
+                </td>
+                
+                <td>
+                  
+                    23/3
+                  
+                </td>
+                
+                <td>
+                  
+                    7/0
+                  
+                </td>
+                
+                <td>
+                  
+                    7/3
+                  
+                </td>
+                
+                <td>
+                  
+                    0/0
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>david-payne-362710</td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    0/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    sub/1
+                  
+                </td>
+                
+                <td>
+                  
+                    sub/1
+                  
+                </td>
+                
+                <td>
+                  
+                    6/4
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/-
+                  
+                </td>
+                
+                <td>
+                  
+                    1/0
+                  
+                </td>
+                
+                <td>
+                  
+                    1/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>tom-smith-243945</td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/3
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/3
+                  
+                </td>
+                
+                <td>
+                  
+                    4/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    2/1
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>james-vince-296597</td>
+                
+                <td>
+                  
+                    7/-
+                  
+                </td>
+                
+                <td>
+                  
+                    5/-
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+                <td>
+                  
+                    62/-
+                  
+                </td>
+                
+                <td>
+                  
+                    4/-
+                  
+                </td>
+                
+                <td>
+                  
+                    72/-
+                  
+                </td>
+                
+                <td>
+                  
+                    4/-
+                  
+                </td>
+                
+                <td>
+                  
+                    70/-
+                  
+                </td>
+                
+                <td>
+                  
+                    1/-
+                  
+                </td>
+                
+                <td>
+                  
+                    86/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>toby-albert-1260388</td>
+                
+                <td>
+                  
+                    16/-
+                  
+                </td>
+                
+                <td>
+                  
+                    18/-
+                  
+                </td>
+                
+                <td>
+                  
+                    54/-
+                  
+                </td>
+                
+                <td>
+                  
+                    11/-
+                  
+                </td>
+                
+                <td>
+                  
+                    66/-
+                  
+                </td>
+                
+                <td>
+                  
+                    3/-
+                  
+                </td>
+                
+                <td>
+                  
+                    10/-
+                  
+                </td>
+                
+                <td>
+                  
+                    46/-
+                  
+                </td>
+                
+                <td>
+                  
+                    36/-
+                  
+                </td>
+                
+                <td>
+                  
+                    6/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>joe-weatherley-748793</td>
+                
+                <td>
+                  
+                    18/-
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/-
+                  
+                </td>
+                
+                <td>
+                  
+                    3/-
+                  
+                </td>
+                
+                <td>
+                  
+                    11/-
+                  
+                </td>
+                
+                <td>
+                  
+                    0/-
+                  
+                </td>
+                
+                <td>
+                  
+                    4/-
+                  
+                </td>
+                
+                <td>
+                  
+                    3/-
+                  
+                </td>
+                
+                <td>
+                  
+                    48/-
+                  
+                </td>
+                
+                <td>
+                  
+                    33/-
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>dewald-brevis-1070665</td>
+                
+                <td>
+                  
+                    13/-
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/-
+                  
+                </td>
+                
+                <td>
+                  
+                    24/-
+                  
+                </td>
+                
+                <td>
+                  
+                    68/-
+                  
+                </td>
+                
+                <td>
+                  
+                    57/-
+                  
+                </td>
+                
+                <td>
+                  
+                    42/-
+                  
+                </td>
+                
+                <td>
+                  
+                    32/-
+                  
+                </td>
+                
+                <td>
+                  
+                    42/-
+                  
+                </td>
+                
+                <td>
+                  
+                    38/-
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/-
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>james-fuller-451782</td>
+                
+                <td>
+                  
+                    17/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    27/0
+                  
+                </td>
+                
+                <td>
+                  
+                    4/1
+                  
+                </td>
+                
+                <td>
+                  
+                    12/2
+                  
+                </td>
+                
+                <td>
+                  
+                    12/2
+                  
+                </td>
+                
+                <td>
+                  
+                    20/0
+                  
+                </td>
+                
+                <td>
+                  
+                    6/0
+                  
+                </td>
+                
+                <td>
+                  
+                    3/0
+                  
+                </td>
+                
+                <td>
+                  
+                    4/1
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>benny-howell-211748</td>
+                
+                <td>
+                  
+                    14/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/-
+                  
+                </td>
+                
+                <td>
+                  
+                    23/0
+                  
+                </td>
+                
+                <td>
+                  
+                    11/1
+                  
+                </td>
+                
+                <td>
+                  
+                    1/2
+                  
+                </td>
+                
+                <td>
+                  
+                    4/1
+                  
+                </td>
+                
+                <td>
+                  
+                    24/-
+                  
+                </td>
+                
+                <td>
+                  
+                    1/0
+                  
+                </td>
+                
+                <td>
+                  
+                    13/0
+                  
+                </td>
+                
+                <td>
+                  
+                    1/1
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>liam-dawson-211855</td>
+                
+                <td>
+                  
+                    6/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/4
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/4
+                  
+                </td>
+                
+                <td>
+                  
+                    9/2
+                  
+                </td>
+                
+                <td>
+                  
+                    1/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    25/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>chris-wood-310525</td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    0/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    1/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/2
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    0/1
+                  
+                </td>
+                
+                <td>
+                  
+                    31/0
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>scott-currie-1104697</td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/0
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/3
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    0/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/3
+                  
+                </td>
+                
+              </tr>
+              
+              <tr>
+                <td>eddie-jack-1268580</td>
+                
+                <td>
+                  
+                    0/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/1
+                  
+                </td>
+                
+                <td>
+                  
+                    14/1
+                  
+                </td>
+                
+                <td>
+                  
+                    DNB/
+                  
+                </td>
+                
+                <td>
+                  
+                    N/A
+                  
+                </td>
+                
+                <td>
+                  
+                    N/A
+                  
+                </td>
+                
+                <td>
+                  
+                    N/A
+                  
+                </td>
+                
+                <td>
+                  
+                    N/A
+                  
+                </td>
+                
+                <td>
+                  
+                    N/A
+                  
+                </td>
+                
+                <td>
+                  
+                    N/A
+                  
+                </td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Ground Reports Tab -->
+      <div id="ground-reports-tab" class="tab-pane fade">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>Summary Stats</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Statistic</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Batting Win</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Chasing Win</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-9">
+            <h2>Ground Reports</h2>
+            <table id="groundReportsTable" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Report</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session Data Tab -->
+      <div id="session-data-tab" class="tab-pane fade">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Session Data</h2>
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Team A 6 Over Score</th>
+                  <th>Team A Lambi Score</th>
+                  <th>Team B 6 Over Score</th>
+                  <th>Team B Lambi Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dreamteams Tab -->
+      <div id="dreamteams-tab" class="tab-pane fade">
+        <div class="container">
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

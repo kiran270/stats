@@ -43,8 +43,9 @@ def stats():
 	elif ftype=="WODI":
 		ftype="9"
 	print(squad_url)
-	response = requests.get(squad_url)
-	soup = BeautifulSoup(response.text, 'html.parser')
+	with open('515905.html', 'r', encoding='utf-8') as file:
+	    html_content = file.read()
+	soup = BeautifulSoup(html_content, 'html.parser')
 	players_table_rows=soup.find_all('tr')
 	player_ids=[]
 	for i in range(1,len(players_table_rows)):
@@ -102,8 +103,8 @@ def stats():
 		session_scores=[]
 	sorted_data = sorted(stats, key=lambda x: x["team"])
 	squad_url_split=squad_url.split("/")
-	dreamteams=dreamstats(ground_url,groundname)
-	rendered_html = render_template('urls3.html', stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores,dreamteams=dreamteams)
+	# dreamteams=dreamstats(ground_url,groundname)
+	rendered_html = render_template('urlstables.html', stats=sorted_data,reports=reports,summary=summarystats,session_scores=session_scores)
 	with open("templates/Match_pages/"+squad_url_split[5]+".html", "w", encoding="utf-8") as file:
 		file.write(rendered_html)
 	return rendered_html

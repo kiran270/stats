@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Matches Statistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap & DataTables CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <!-- jQuery & JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      background-color: #f8f9fa;
+    }
+
+    .nav-tabs .nav-link {
+      font-weight: 600;
+      color: #495057;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .nav-tabs .nav-link.active {
+      background-color: #0d6efd;
+      color: #fff;
+    }
+
+    .card {
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    table.dataTable th,
+    table.dataTable td {
+      white-space: nowrap;
+      padding: 6px 8px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    table.dataTable tbody tr:hover {
+      background-color: #e9f5ff;
+    }
+
+    .highlight-batting {
+      background-color: #d4edda !important;
+      font-weight: 600;
+    }
+
+    .highlight-bowling {
+      background-color: #d1ecf1 !important;
+      font-weight: 600;
+    }
+
+    .highlight-low {
+      background-color: #f8f9fa !important;
+      color: #888;
+    }
+
+    .player-card {
+      border: 1px solid #dee2e6;
+      border-radius: 0.75rem;
+      background-color: #fdfdfd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .match-grid {
+      font-size: 11px;
+    }
+
+    .match-grid .fw-bold {
+      font-size: 12px;
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      $('#statsTable1').DataTable({ pageLength: 50 });
+      $('#statsTable2').DataTable({ pageLength: 50 });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid my-4">
+    <ul class="nav nav-tabs" id="statsTab" role="tablist">
+      <li class="nav-item">
+        <button class="nav-link active" id="table-tab" data-bs-toggle="tab" data-bs-target="#table-view" type="button" role="tab">Table View</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-view" type="button" role="tab">List View</button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="statsTabContent">
+
+      <!-- Table View -->
+      <div class="tab-pane fade show active" id="table-view" role="tabpanel">
+        <div class="row g-4">
+          <!-- Team A -->
+          <div class="col-xl-6">
+            <div class="card border-primary">
+              <div class="card-header bg-primary text-white text-center">Team A</div>
+              <div class="card-body p-3">
+                <div class="table-responsive">
+                  <table id="statsTable1" class="table table-bordered table-striped nowrap w-100">
+                    <thead>
+                      <tr>
+                        <th>Player</th>
+                        {% for i in range(1, 11) %}
+                        <th>M{{ i }}</th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for x in stats %}
+                        {% if x.team == 'A' %}
+                        <tr>
+                          <td>{{ x.player_name }}</td>
+                          {% for i in range(10) %}
+                            {% if x.Batting_First | length > i %}
+                              {% set bat = x.Batting_First[i] %}
+                              {% set bowl = x.Bowling_Second[i] %}
+                              <td class="{% if bat == 0 and bowl == 0 %}highlight-low{% elif bat >= 40 %}highlight-batting{% elif bowl >= 25 %}highlight-bowling{% endif %}">{{ bat }}/{{ bowl }}</td>
+                            {% else %}
+                              <td>N/A</td>
+                            {% endif %}
+                          {% endfor %}
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team B -->
+          <div class="col-xl-6">
+            <div class="card border-success">
+              <div class="card-header bg-success text-white text-center">Team B</div>
+              <div class="card-body p-3">
+                <div class="table-responsive">
+                  <table id="statsTable2" class="table table-bordered table-striped nowrap w-100">
+                    <thead>
+                      <tr>
+                        <th>Player</th>
+                        {% for i in range(1, 11) %}
+                        <th>M{{ i }}</th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for x in stats %}
+                        {% if x.team == 'B' %}
+                        <tr>
+                          <td>{{ x.player_name }}</td>
+                          {% for i in range(10) %}
+                            {% if x.Batting_Second | length > i %}
+                              {% set bat = x.Batting_Second[i] %}
+                              {% set bowl = x.Bowling_First[i] %}
+                              <td class="{% if bat == 0 and bowl == 0 %}highlight-low{% elif bat >= 40 %}highlight-batting{% elif bowl >= 25 %}highlight-bowling{% endif %}">{{ bat }}/{{ bowl }}</td>
+                            {% else %}
+                              <td>N/A</td>
+                            {% endif %}
+                          {% endfor %}
+                        </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- List View -->
+      <div class="tab-pane fade" id="list-view" role="tabpanel">
+        <div class="row g-4">
+
+          <!-- Team A List -->
+          <div class="col-xl-6">
+            <div class="card border-primary">
+              <div class="card-header bg-primary text-white text-center">Team A</div>
+              <div class="card-body">
+                {% for x in stats %}
+                  {% if x.team == 'A' %}
+                  <div class="player-card shadow-sm">
+                    <h6 class="mb-2 text-primary fw-bold">{{ x.player_name }}</h6>
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2 match-grid">
+                      {% for i in range(10) %}
+                        {% set bat = x.Batting_Second[i] %}
+                        {% set bowl = x.Bowling_First[i] %}
+                        <div class="col">
+                          <div class="text-center border rounded p-1 bg-white 
+                            {% if bat == 0 and bowl == 0 %}highlight-low{% elif bat >= 40 %}highlight-batting{% elif bowl >= 25 %}highlight-bowling{% endif %}
+                          ">
+                            <div class="fw-bold">M{{ i+1 }}</div>
+                            <div>{{ bat }}/{{ bowl }}</div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Team B List -->
+          <div class="col-xl-6">
+            <div class="card border-success">
+              <div class="card-header bg-success text-white text-center">Team B</div>
+              <div class="card-body">
+                {% for x in stats %}
+                  {% if x.team == 'B' %}
+                  <div class="player-card shadow-sm">
+                    <h6 class="mb-2 text-success fw-bold">{{ x.player_name }}</h6>
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2 match-grid">
+                      {% for i in range(10) %}
+                        {% set bat = x.Batting_First[i] %}
+                        {% set bowl = x.Bowling_Second[i] %}
+                        <div class="col">
+                          <div class="text-center border rounded p-1 bg-white 
+                            {% if bat == 0 and bowl == 0 %}highlight-low{% elif bat >= 40 %}highlight-batting{% elif bowl >= 25 %}highlight-bowling{% endif %}
+                          ">
+                            <div class="fw-bold">M{{ i+1 }}</div>
+                            <div>{{ bat }}/{{ bowl }}</div>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
